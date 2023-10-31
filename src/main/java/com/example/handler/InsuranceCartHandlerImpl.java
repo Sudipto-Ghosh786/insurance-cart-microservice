@@ -8,6 +8,8 @@ import com.example.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class InsuranceCartHandlerImpl implements InsuranceCartHandler {
     @Autowired
@@ -35,12 +37,11 @@ public class InsuranceCartHandlerImpl implements InsuranceCartHandler {
 
     @Override
     public CreateOrderFromCartResponse createOrderFromCart(final Integer userId) {
-        cartDao.getAllItemsForUser(userId).forEach(cartItem -> {
-            ordersDao.addOrder(Orders.builder()
-                            .userId(cartItem.getUserId())
-                            .policyDetails(cartItem.getPolicyDetail())
-                    .build());
-        });
+        List<Cart> listOfCartItems = cartDao.getAllItemsForUser(userId);
+        ordersDao.addOrder(Orders.builder()
+                .userId(userId)
+                .policyDetails(listOfCartItems.toString())
+                .build());
         return CreateOrderFromCartResponse.builder().isOrderCreated(true).build();
     }
 }
