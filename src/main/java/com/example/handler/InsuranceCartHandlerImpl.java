@@ -1,11 +1,10 @@
 package com.example.handler;
 
 import com.example.dao.CartDao;
+import com.example.dao.OrdersDao;
 import com.example.entity.Cart;
-import com.example.model.AddPolicyToCartRequest;
-import com.example.model.AddPolicyToCartResponse;
-import com.example.model.DeletePolicyFromCartRequest;
-import com.example.model.DeletePolicyFromCartResponse;
+import com.example.entity.Orders;
+import com.example.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +12,8 @@ import org.springframework.stereotype.Service;
 public class InsuranceCartHandlerImpl implements InsuranceCartHandler {
     @Autowired
     private CartDao cartDao;
+    @Autowired
+    private OrdersDao ordersDao;
 
     @Override
     public AddPolicyToCartResponse addPolicyToCart(final AddPolicyToCartRequest addPolicyToCartRequest) {
@@ -29,5 +30,17 @@ public class InsuranceCartHandlerImpl implements InsuranceCartHandler {
     public DeletePolicyFromCartResponse deletePolicyFromCart(final DeletePolicyFromCartRequest deletePolicyFromCartRequest) {
         cartDao.deleteItemFromCart(deletePolicyFromCartRequest.getUserId(), deletePolicyFromCartRequest.getPolicyId());
         return DeletePolicyFromCartResponse.builder().isPolicyDeleteSuccessfully(true).build();
+    }
+
+
+    @Override
+    public CreateOrderFromCartResponse createOrderFromCart(final Integer userId) {
+        cartDao.getAllItemsForUser(userId).forEach(cartItem -> {
+            ordersDao.addOrder(Orders.builder()
+                            .userId(cartItem.getUserId())
+                            .policyDetails(cartItem.getPolicyDetail())
+                    .build());
+        });
+        return CreateOrderFromCartResponse.builder().isOrderCreated(true).build();
     }
 }

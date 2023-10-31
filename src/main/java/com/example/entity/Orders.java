@@ -16,11 +16,10 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Cart {
+public class Orders {
     @Id
     @GeneratedValue
-    private Integer cartItemId;
+    private Integer orderId;
     private Integer userId;
-    private Integer policyId;
-    private String policyDetail;
+    private String policyDetails;
 }

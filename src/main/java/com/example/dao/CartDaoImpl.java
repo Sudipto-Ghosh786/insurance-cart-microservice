@@ -1,11 +1,12 @@
 package com.example.dao;
 
 import com.example.entity.Cart;
-import com.example.model.DeletePolicyFromCartRequest;
 import com.example.repo.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Repository
 public class CartDaoImpl implements CartDao {
@@ -18,13 +19,13 @@ public class CartDaoImpl implements CartDao {
     }
 
     @Override
-    public void updateItemInCart(final Cart updatedCart) {
-
-    }
-
-    @Override
     @Transactional
     public void deleteItemFromCart(final Integer userId, final Integer policyId) {
         cartRepository.deleteByPolicyId(userId, policyId);
+    }
+
+    @Override
+    public List<Cart> getAllItemsForUser(final Integer userId) {
+        return cartRepository.getListOfItemsForUserId(userId);
     }
 }

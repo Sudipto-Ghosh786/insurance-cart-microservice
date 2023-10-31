@@ -11,7 +11,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class DeletePolicyFromCartRequest {
-	private Integer userId;
-    private Integer policyId;
+public class CreateOrderFromCartResponse {
+    private Boolean isOrderCreated;
 }

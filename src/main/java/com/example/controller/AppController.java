@@ -1,10 +1,7 @@
 package com.example.controller;
 
 import com.example.handler.InsuranceCartHandler;
-import com.example.model.AddPolicyToCartRequest;
-import com.example.model.AddPolicyToCartResponse;
-import com.example.model.DeletePolicyFromCartRequest;
-import com.example.model.DeletePolicyFromCartResponse;
+import com.example.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,5 +20,10 @@ public class AppController {
     @DeleteMapping("/deletePolicyFromCart")
     public DeletePolicyFromCartResponse deletePolicyFromCart(@RequestBody final DeletePolicyFromCartRequest deletePolicyFromCartRequest) {
         return insuranceCartHandler.deletePolicyFromCart(deletePolicyFromCartRequest);
+    }
+
+    @GetMapping("/createOrder/{userId}")
+    public CreateOrderFromCartResponse createOrder(@PathVariable final int userId) {
+        insuranceCartHandler.createOrderFromCart(userId);
     }
 }
