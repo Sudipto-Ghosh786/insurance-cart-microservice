@@ -17,8 +17,8 @@ import java.util.List;
 public class Cart {
     @Id
     @GeneratedValue
-    private Integer cartId;
+    private Integer cartItemId;
     private Integer userId;
-    private Policy policyDetail;
+    private Integer policyId;
+    private String policyDetail;
 }
-

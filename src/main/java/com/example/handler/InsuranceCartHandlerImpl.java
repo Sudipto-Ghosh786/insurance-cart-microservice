@@ -18,7 +18,8 @@ public class InsuranceCartHandlerImpl implements InsuranceCartHandler {
     public AddPolicyToCartResponse addPolicyToCart(final Integer userId, final AddPolicyToCartRequest addPolicyToCartRequest) {
         cartDao.saveItemToCart(Cart.builder()
                         .userId(userId)
-                        .policyDetail(addPolicyToCartRequest.getPolicyDetails())
+                        .policyId(addPolicyToCartRequest.getPolicyDetails().getPolicyId())
+                        .policyDetail(addPolicyToCartRequest.getPolicyDetails().toString())
                 .build());
         return AddPolicyToCartResponse.builder()
                 .isPolicyAddedSuccessfully(Boolean.TRUE).build();
