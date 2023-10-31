@@ -13,5 +13,5 @@ import java.util.List;
 public interface CartRepository extends CrudRepository<Cart, Integer> {
     @Modifying
     @Query("DELETE FROM Cart c WHERE c.userId = :userId AND c.policyId = :policyId")
-    public abstract void deleteByPolicyId(@Param("policyId") final Integer userId, @Param("policyId") final Integer policyId);
+    public abstract void deleteByPolicyId(@Param("userId") final Integer userId, @Param("policyId") final Integer policyId);
 }

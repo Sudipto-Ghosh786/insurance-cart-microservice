@@ -6,6 +6,6 @@ import com.example.model.DeletePolicyFromCartRequest;
 import com.example.model.DeletePolicyFromCartResponse;
 
 public interface InsuranceCartHandler {
-    public abstract AddPolicyToCartResponse addPolicyToCart(final Integer userId, final AddPolicyToCartRequest addPolicyToCartRequest);
-    public abstract DeletePolicyFromCartResponse deletePolicyFromCart(final Integer userId, final DeletePolicyFromCartRequest deletePolicyFromCartRequest);
+    public abstract AddPolicyToCartResponse addPolicyToCart(final AddPolicyToCartRequest addPolicyToCartRequest);
+    public abstract DeletePolicyFromCartResponse deletePolicyFromCart(final DeletePolicyFromCartRequest deletePolicyFromCartRequest);
 }

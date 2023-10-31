@@ -8,5 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 @ToString
 public class DeletePolicyFromCartRequest {
+	private Integer userId;
     private Integer policyId;
 }

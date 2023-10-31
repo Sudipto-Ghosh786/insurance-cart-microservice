@@ -6,5 +6,5 @@ import com.example.model.DeletePolicyFromCartRequest;
 public interface CartDao {
     public abstract void saveItemToCart(final Cart cart);
     public abstract void updateItemInCart(final Cart updatedCart);
-    public abstract void deleteItemFromCart(final Integer userId, final DeletePolicyFromCartRequest deletePolicyFromCartRequest);
+    public abstract void deleteItemFromCart(final Integer userId, final Integer policyId);
 }

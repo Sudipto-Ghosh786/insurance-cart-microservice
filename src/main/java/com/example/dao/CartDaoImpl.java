@@ -5,6 +5,7 @@ import com.example.model.DeletePolicyFromCartRequest;
 import com.example.repo.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class CartDaoImpl implements CartDao {
@@ -22,7 +23,8 @@ public class CartDaoImpl implements CartDao {
     }
 
     @Override
-    public void deleteItemFromCart(final Integer userId, final DeletePolicyFromCartRequest deletePolicyFromCartRequest) {
-        cartRepository.deleteByPolicyId(userId, deletePolicyFromCartRequest.getPolicyId());
+    @Transactional
+    public void deleteItemFromCart(final Integer userId, final Integer policyId) {
+        cartRepository.deleteByPolicyId(userId, policyId);
     }
 }

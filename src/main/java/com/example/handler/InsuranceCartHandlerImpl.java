@@ -15,9 +15,9 @@ public class InsuranceCartHandlerImpl implements InsuranceCartHandler {
     private CartDao cartDao;
 
     @Override
-    public AddPolicyToCartResponse addPolicyToCart(final Integer userId, final AddPolicyToCartRequest addPolicyToCartRequest) {
+    public AddPolicyToCartResponse addPolicyToCart(final AddPolicyToCartRequest addPolicyToCartRequest) {
         cartDao.saveItemToCart(Cart.builder()
-                        .userId(userId)
+                        .userId(addPolicyToCartRequest.getUserId())
                         .policyId(addPolicyToCartRequest.getPolicyDetails().getPolicyId())
                         .policyDetail(addPolicyToCartRequest.getPolicyDetails().toString())
                 .build());
@@ -26,8 +26,8 @@ public class InsuranceCartHandlerImpl implements InsuranceCartHandler {
     }
 
     @Override
-    public DeletePolicyFromCartResponse deletePolicyFromCart(final Integer userId, final DeletePolicyFromCartRequest deletePolicyFromCartRequest) {
-        cartDao.deleteItemFromCart(userId, deletePolicyFromCartRequest);
+    public DeletePolicyFromCartResponse deletePolicyFromCart(final DeletePolicyFromCartRequest deletePolicyFromCartRequest) {
+        cartDao.deleteItemFromCart(deletePolicyFromCartRequest.getUserId(), deletePolicyFromCartRequest.getPolicyId());
         return DeletePolicyFromCartResponse.builder().isPolicyDeleteSuccessfully(true).build();
     }
 }

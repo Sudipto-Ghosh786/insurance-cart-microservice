@@ -15,15 +15,13 @@ public class AppController {
     @Autowired
     private InsuranceCartHandler insuranceCartHandler;
 
-    @PostMapping("/addPolicyToCart/{userId}")
-    public AddPolicyToCartResponse addPolicyToCart(@RequestParam final Integer userId,
-        @RequestBody final AddPolicyToCartRequest addPolicyToCartRequest) {
-        return insuranceCartHandler.addPolicyToCart(userId, addPolicyToCartRequest);
+    @PostMapping("/addPolicyToCart")
+    public AddPolicyToCartResponse addPolicyToCart(@RequestBody final AddPolicyToCartRequest addPolicyToCartRequest) {
+        return insuranceCartHandler.addPolicyToCart(addPolicyToCartRequest);
     }
 
-    @DeleteMapping("/deletePolicyFromCart/{userId}")
-    public DeletePolicyFromCartResponse deletePolicyFromCart(@RequestParam final Integer userId,
-        @RequestBody final DeletePolicyFromCartRequest deletePolicyFromCartRequest) {
-        return insuranceCartHandler.deletePolicyFromCart(userId, deletePolicyFromCartRequest);
+    @DeleteMapping("/deletePolicyFromCart")
+    public DeletePolicyFromCartResponse deletePolicyFromCart(@RequestBody final DeletePolicyFromCartRequest deletePolicyFromCartRequest) {
+        return insuranceCartHandler.deletePolicyFromCart(deletePolicyFromCartRequest);
     }
 }
