@@ -42,6 +42,7 @@ public class InsuranceCartHandlerImpl implements InsuranceCartHandler {
                 .userId(userId)
                 .policyDetails(listOfCartItems.toString())
                 .build());
+        cartDao.removeListOfItems(listOfCartItems);
         return CreateOrderFromCartResponse.builder().isOrderCreated(true).build();
     }
 }

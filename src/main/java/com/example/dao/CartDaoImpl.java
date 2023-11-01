@@ -28,4 +28,9 @@ public class CartDaoImpl implements CartDao {
     public List<Cart> getAllItemsForUser(final Integer userId) {
         return cartRepository.getListOfItemsForUserId(userId);
     }
+
+    @Override
+    public void removeListOfItems(List<Cart> listOfItems) {
+        cartRepository.deleteAll(listOfItems);
+    }
 }
