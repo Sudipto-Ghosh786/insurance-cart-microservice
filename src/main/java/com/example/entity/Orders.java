@@ -6,9 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity
 @Builder
@@ -21,5 +23,7 @@ public class Orders {
     @GeneratedValue
     private Integer orderId;
     private Integer userId;
-    private String policyDetails;
+    private Boolean isPaymentDone;
+    @ElementCollection
+    private List<Integer> policyIds;
 }
